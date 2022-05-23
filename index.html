@@ -1,0 +1,273 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<style>
+  body {
+	 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+ .github-cards {
+	 display: flex;
+	 flex-flow: row;
+	 flex-wrap: wrap;
+	 width: 900px;
+}
+ .github-card {
+	 display: block;
+	 box-sizing: border-box;
+	 border: 1px solid #ccc;
+	 margin: 10px;
+	 padding: 20px;
+	 color: #555;
+	 text-decoration: none;
+	 font-size: 13px;
+	 flex: 1;
+	 min-width: 250px;
+}
+ .github-card > h3 {
+	 margin-top: 0;
+	 color: #4078c0;
+	 font-size: 15px;
+}
+ .github-card__meta {
+	 margin-right: 20px;
+}
+ .github-card__meta > i {
+	 font-size: 16px;
+}
+ 
+</style>
+<h1>To do</h1>
+<p> Simply Docs is being rendered via 
+  API others are not</p>
+<p>- [ ] Create Repo Cards Using for (var i = 0, len = repos.length; i < len; i++) {
+          <br>                             -  [ ] Add URLS  
+  <br>
+    -  [ ] Add Language Support
+
+<br>
+    -  [ ] Convert To Pure Javascript
+</p>
+<code>
+  const classes = {
+  a: "projects-a",
+  li: "projects-li",
+  ul: "projects-ul",
+  lang: "projects-lang",
+  desc: "projects-desc",
+  creat:"projects-creat",
+  stars:"projects-stars",
+  Forks:"projects-forks"
+};
+
+const username = "MarketingPipeline";
+
+const repoXHR = new XMLHttpRequest();
+
+function populate() {
+  const repos = JSON.parse(this.response);
+  const ul = document.getElementsByClassName(classes.ul)[0];
+
+  for (var i = 0, len = repos.length; i < len; i++) {
+    if (!repos[i].fork) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      const p = document.createElement("p");
+      const p2 = document.createElement("p");
+      const p3=
+document.createElement("p");
+   const p4=
+document.createElement("p");      
+
+ const p5=
+document.createElement("p");            
+      
+      
+      li.className = classes.li;
+      
+      a.className = classes.a;
+      
+      a.href = repos[i].html_url;
+      a.innerText = repos[i].name;
+      
+      p.className = classes.lang;
+      p.innerText = repos[i].language || " ";
+      
+      p2.className = classes.desc;
+      p2.innerText = repos[i].description;
+      p3.className=classes.creat;
+      p4.className=classes.Forks;
+      p5.className=classes.stars;
+     p3.innerText= repos[i].license && repos[i].license.name ;
+      if (repos[i].forks > 0) {
+        p4.innerHTML = `<a href="${repos[i].html_url}">
+    <img title="Star on GitHub" src="https://img.shields.io/github/forks/MarketingPipeline/${repos[i].name}.svg?style=social&label=Forks">` 
+      }
+        if (repos[i].stargazers_count > 0) {
+        p5.innerHTML = `<a href="${repos[i].html_url}">
+    <img title="Star on GitHub" src="https://img.shields.io/github/stars/MarketingPipeline/${repos[i].name}.svg?style=social&label=Stars">` 
+      }
+      
+      ul.appendChild(li)
+        .appendChild(a)
+        .appendChild(p)
+        .appendChild(p2)
+        .appendChild(p3)
+        .appendChild(p4)
+        .appendChild(p5);
+    }
+  }
+}
+
+repoXHR.open(
+  "GET",
+  'https://api.github.com/users/' + username + '/repos?sort=updated',
+  true
+);
+repoXHR.addEventListener("load", populate);
+repoXHR.send();
+</code> 
+
+<div class="github-cards">
+  <a repo-url href="" class="github-card" data-github="MarketingPipeline/Simply-Docs">
+    <h3 repo-title></h3>
+    <p repo-description></p>
+    <span repo-language  class="github-card__meta">
+      <span class="github-card__language-icon" style="color: #7A0410;">●</span> Ruby
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <span data-stars>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-code-fork" aria-hidden="true"></i>
+      <span data-forks>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+  </a>
+
+  <a href="https://github.com/Nexmo/nexmo-php" class="github-card" data-github="MarketingPipeline/Simply-Docs">
+    <h3>nexmo-php</h3>
+    <p>Nexmo REST API client for PHP</p>
+    <span class="github-card__meta">
+      <span class="github-card__language-icon" style="color: #4C5E99;">●</span> PHP
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <span data-stars>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-code-fork" aria-hidden="true"></i>
+      <span data-forks>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+  </a>
+
+  <a href="https://github.com/Nexmo/nexmo-python" class="github-card" data-github="Nexmo/nexmo-python">
+    <h3>nexmo-python</h3>
+    <p>Nexmo REST API client for Python</p>
+    <span class="github-card__meta">
+      <span class="github-card__language-icon" style="color: #3572A5;">●</span> Python
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <span data-stars>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-code-fork" aria-hidden="true"></i>
+      <span data-forks>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+  </a>
+
+  <a href="https://github.com/Nexmo/nexmo-dotnet" class="github-card" data-github="Nexmo/nexmo-dotnet">
+    <h3>nexmo-dotnet</h3>
+    <p>Nexmo REST API client for .NET</p>
+    <span class="github-card__meta">
+      <span class="github-card__language-icon" style="color: #178600;">●</span> C#
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <span data-stars>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-code-fork" aria-hidden="true"></i>
+      <span data-forks>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+  </a>
+
+  <a href="https://github.com/Nexmo/nexmo-node" class="github-card" data-github="Nexmo/nexmo-node">
+    <h3>nexmo-node</h3>
+    <p>Nexmo REST API client for Node.js</p>
+    <span class="github-card__meta">
+      <span class="github-card__language-icon" style="color: #F1E05A;">●</span> JavaScript
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <span data-stars>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-code-fork" aria-hidden="true"></i>
+      <span data-forks>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+  </a>
+
+  <a href="https://github.com/Nexmo/nexmo-java" class="github-card" data-github="Nexmo/nexmo-java">
+    <h3>nexmo-java</h3>
+    <p>Nexmo REST API client for Java</p>
+    <span class="github-card__meta">
+      <span class="github-card__language-icon" style="color: #B07219;">●</span> Java
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <span data-stars>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+    <span class="github-card__meta">
+      <i class="fa fa-code-fork" aria-hidden="true"></i>
+      <span data-forks>
+        <i class="fa fa-spinner" aria-hidden="true"></i>
+      </span>
+    </span>
+  </a>
+</div>
+  
+  
+<script type="text/javascript">
+  $('[data-github]').each(function () {
+  var _this = this;
+  var repo = $(_this).data('github')
+
+  fetch('https://api.github.com/repos/' + repo).then(function (response) {
+    return response.json();
+  }).then(function (response) {
+       $(_this).find('[data-github]').attr("href", "test.com");
+
+    
+    
+    
+    $(_this).find('[repo-title]').text(response.name);
+    
+    $(_this).find('[repo-description]').text(response.description);
+        
+    $(_this).find('[repo-language ]').text(response.language);
+    $(_this).find('[data-forks]').text(response.forks);
+    $(_this).find('[data-stars]').text(response.stargazers_count);
+  });
+});
+  </script>  
